@@ -11,7 +11,6 @@
                 applyDescriptionToAll = id; 
                 applyTitleToAll = id; 
                 cancelUpload = id; 
-                createNewAlbum = id; 
                 credentialsSheetCancel = id; 
                 credentialsSheetOK = id; 
                 removeAllTags = id; 
