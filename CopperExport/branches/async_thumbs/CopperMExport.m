@@ -48,7 +48,7 @@
 	return NSLocalizedString(@"Coppermine", @"Title of the tab, I think");
 }
 
-- (void)cancelExport { NSLog(@"In cancel export"); }
+- (void)cancelExport {}
 
 - (void)unlockProgress {}
 
@@ -104,12 +104,10 @@
 			[self setSelectedCategory:[categories objectAtIndex:0]];
 		else
 			[self setSelectedCategory:nil];
-		if (newAlbumName) {
+		if (newAlbumName)
 			[newAlbumName release];
-		}
-		if (newAlbumDesc) {
+		if (newAlbumDesc)
 			[newAlbumDesc release];
-		}
 		[self setNewAlbumName: nil];
 		[self setNewAlbumDesc: nil];
 		[self setNewAlbumNameIsEmpty: YES];
@@ -209,37 +207,11 @@
 }
 
 - (void)viewWillBeDeactivated {
-	NSLog(@"In viewWillBeDeactivated");
 	[self abortPopulateImageRecords];
 	[self savePreferences];
 }
 
-- (void)cleanAfterCancel {
-	NSLog(@"In cleanAfterCancel");
-}
-
-- (void)cancelExportBeforeBeginning {
-	NSLog(@"In cancelExportBeforeBeginning");
-}
-
-- (void)cancelAction: (id)sender {
-	NSLog(@"In cancelAction");
-}
-
-- (void)cancelOperation: (id)sender {
-	NSLog(@"In cancelOperation");
-}
-
-- (void)cancel: (id)sender {
-	NSLog(@"In cancel");
-}
-
-- (void)cancelClicked: (id)sender {
-	NSLog(@"In cancelClicked");
-}
-
 - (void)viewWillBeActivated {
-	NSLog(@"In viewWillBeActivated");
 	prefs=[[NSUserDefaults standardUserDefaults] persistentDomainForName:[[NSBundle bundleForClass:[self class]] bundleIdentifier]];
 	[self setVersion:[[NSBundle bundleForClass:[self class]] objectForInfoDictionaryKey:@"CFBundleVersion"]];
 	
@@ -255,39 +227,47 @@
 	albums = [NSMutableArray arrayWithCapacity:5];
 	
 	populateImageRecordsShouldAbort = NO;
-	[self setCpgImageRecords: [NSMutableArray array]];
-	[NSThread detachNewThreadSelector: @selector(populateImageRecords)
+	[self setImageRecords: [NSMutableArray array]];
+	[self populateImageRecords];
+}
+
+- (void)populateImageRecords {
+	nextThumbnail = 0;
+	[NSThread detachNewThreadSelector: @selector(resumePopulateImageRecords)
 							 toTarget: self
 						   withObject: nil];
 }
 
-- (void)populateImageRecords {
+- (void)resumePopulateImageRecords {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	int i;
-	for(i = 0;
-		!populateImageRecordsShouldAbort &&
-		// This is a hack to stop the process when "Cancel" is hit on the window, because in this
-		// case the viewWillBeDeactivated method is not called for some reason. We check that i>2
-		// because the conversion may start before the window becomes visible.
-		([[settingsBox window] isVisible] || i<3) &&
-		(i < [exportManager imageCount]); i++) {
-		NSLog(@"Populating image record at index %d, isVisible: %d", i, [[settingsBox window] isVisible]);
-		/*
-		 * There's a question about whether we should do this loop in reverse.  Copper orders
-		 * everything based on reverse-chronological upload time, so a large batch-upload 
-		 * appears in reverse order from the way it is in iPhoto.
-		 */
-		[[self mutableArrayValueForKey: @"imageRecords"] addObject: [CpgImageRecord recordFromExporter: exportManager atIndex: i]];
-	}
+	// This probably means the value hasn't been initialized
+	if (nextThumbnail < 0)
+		nextThumbnail = 0;
+	// Only do something if we hadn't finished before
+	if (nextThumbnail < [exportManager imageCount]) {
+		// Reset the abort flag
+		populateImageRecordsShouldAbort = NO;
+		
+		// Simply continue from where we had left off.
+		for(;
+			!populateImageRecordsShouldAbort &&
+			// This is a hack to stop the process when "Cancel" is hit on the window, because in this
+			// case the viewWillBeDeactivated method is not called for some reason. We check that nextThumbnail>2
+			// because the conversion may start before the window becomes visible.
+			([[settingsBox window] isVisible] || nextThumbnail<3) &&
+			(nextThumbnail < [exportManager imageCount]); nextThumbnail++) {
+			NSLog(@"Generating thumbnail %d", nextThumbnail);
+			[[self mutableArrayValueForKey: @"imageRecords"] addObject: [CpgImageRecord recordFromExporter: exportManager atIndex: nextThumbnail]];
+		}
 
-	[recordController setSelectionIndexes: [NSIndexSet indexSet]];
+		[recordController setSelectionIndexes: [NSIndexSet indexSet]];
+	}
 	
 	[pool release];
 }
 
 - (void)abortPopulateImageRecords {
-	NSLog(@"Setting populateImageRecordsShouldAbort");
 	populateImageRecordsShouldAbort = YES;
 }
 
@@ -314,6 +294,9 @@
 
 // Uploader Delegate Methods
 - (void)uploaderDidBeginProcess {
+	// Stop thumbnail generation
+	[self abortPopulateImageRecords];
+	
 	[responses release];
 	responses = [[NSMutableArray array] retain];
 }
@@ -345,6 +328,9 @@
 		[progBar stopAnimation: self];
 	}
 	
+	// Stop thumbnail generation
+	[self abortPopulateImageRecords];
+	
 	if(shouldOpenCopper) {
 		// Now open the redirection URL.
 		NSMutableString *urlString = [NSMutableString stringWithCapacity: 100];
@@ -367,7 +353,13 @@
 	
 	if([imageRecords count] == 1) {
 		[progBar stopAnimation: self];
-	}	
+	}
+	
+	// We go back to the plugin window, so finish generating thumbnails if needed.
+	[NSThread detachNewThreadSelector: @selector(resumePopulateImageRecords)
+							 toTarget: self
+						   withObject: nil];
+	
 	[NSApp endSheet: progressSheet];
 	[progressSheet orderOut: self];
 }
@@ -534,9 +526,9 @@
 }
 
 // ===========================================================
-// - setCpgImageRecords:
+// - setImageRecords:
 // ===========================================================
-- (void)setCpgImageRecords:(NSMutableArray *)anCpgImageRecords {
+- (void)setImageRecords:(NSMutableArray *)anCpgImageRecords {
     if (imageRecords != anCpgImageRecords) {
         [anCpgImageRecords retain];
         [imageRecords release];
@@ -633,7 +625,6 @@
 }
 
 - (void)savePreferences {
-	NSLog(@"In savePreferences");
 	[[settingsBox window] endEditingFor: nil];
 	if([self username] != nil) {
 		prefs = [[NSDictionary alloc] initWithObjects: [NSArray arrayWithObjects: [self username], [NSNumber numberWithBool: [self shouldOpenCopper]], [self cpgurl], nil]

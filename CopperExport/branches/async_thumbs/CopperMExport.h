@@ -111,12 +111,15 @@
 
 	// CopperExport version
 	NSString *version;
+	
+	// Keep track of thumbnail generation process
+	int nextThumbnail;
 }
 
 - (id)initWithExportImageObj:(ExportMgr *)exportMgr;
 
 - (NSMutableArray *)imageRecords;
-- (void)setCpgImageRecords:(NSMutableArray *)anCpgImageRecords;
+- (void)setImageRecords:(NSMutableArray *)anCpgImageRecords;
 
 - (BOOL)shouldOpenCopper;
 - (void)setShouldOpenCopper:(BOOL)flag;
@@ -176,14 +179,9 @@
 
 - (NSString *)version;
 - (void)setVersion: (NSString *)newversion;
+
 - (void)populateImageRecords;
 - (void)abortPopulateImageRecords;
-
-- (void)cleanAfterCancel;
-- (void)cancelExportBeforeBeginning;
-- (void)cancelAction: (id)sender;
-- (void)cancelOperation: (id)sender;
-- (void)cancel: (id)sender;
-- (void)cancelClicked: (id)sender;
+- (void)resumePopulateImageRecords;
 
 @end
