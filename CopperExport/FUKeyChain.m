@@ -26,21 +26,21 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import "FUKeyChain.h"
+#import "CpgKeyChain.h"
 
-static FUKeyChain* defaultKeyChain;
+static CpgKeyChain* defaultKeyChain;
 
-@interface FUKeyChain (PrivateAPI)
+@interface CpgKeyChain (PrivateAPI)
 
 - (KCItemRef)refForService:(NSString *)service account:(NSString*)account;
 
 @end
 
-@implementation FUKeyChain
+@implementation CpgKeyChain
 
-+ (FUKeyChain*) defaultKeyChain {
++ (CpgKeyChain*) defaultKeyChain {
 	if(!defaultKeyChain)
-		defaultKeyChain = [[FUKeyChain alloc] init];
+		defaultKeyChain = [[CpgKeyChain alloc] init];
 		
 	return defaultKeyChain;
 }
@@ -105,7 +105,7 @@ static FUKeyChain* defaultKeyChain;
 }
 @end
 
-@implementation FUKeyChain (PrivateAPI)
+@implementation CpgKeyChain (PrivateAPI)
 
 - (KCItemRef)refForService:(NSString *)service account:(NSString*)account
 {

@@ -30,11 +30,11 @@
 #import <CoreServices/CoreServices.h>
 #import <Carbon/Carbon.h>
 
-@interface FUKeyChain : NSObject {
+@interface CpgKeyChain : NSObject {
     unsigned	maxLen ;
 }
 
-+ (FUKeyChain*)defaultKeyChain;
++ (CpgKeyChain*)defaultKeyChain;
 
 - (void)setPassword:(NSString*)password forService:(NSString *)service account:(NSString*)account;
 - (NSString*)passwordForService:(NSString *)service account:(NSString*)account;
