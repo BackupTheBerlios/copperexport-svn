@@ -10,6 +10,9 @@
                 applyCurrentTagsToAll = id; 
                 applyDescriptionToAll = id; 
                 applyTitleToAll = id; 
+                cancel = id; 
+                cancelAction = id; 
+                cancelOperation = id; 
                 cancelUpload = id; 
                 credentialsSheetCancel = id; 
                 credentialsSheetOK = id; 
@@ -61,7 +64,7 @@
         {
             CLASS = FUCopperBox; 
             LANGUAGE = ObjC; 
-            OUTLETS = {mPlugin = id; searchField = NSSearchField; }; 
+            OUTLETS = {mPlugin = id; }; 
             SUPERCLASS = NSBox; 
         }, 
         {

@@ -179,4 +179,11 @@
 - (void)populateImageRecords;
 - (void)abortPopulateImageRecords;
 
+- (void)cleanAfterCancel;
+- (void)cancelExportBeforeBeginning;
+- (void)cancelAction: (id)sender;
+- (void)cancelOperation: (id)sender;
+- (void)cancel: (id)sender;
+- (void)cancelClicked: (id)sender;
+
 @end

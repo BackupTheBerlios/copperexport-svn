@@ -214,6 +214,30 @@
 	[self savePreferences];
 }
 
+- (void)cleanAfterCancel {
+	NSLog(@"In cleanAfterCancel");
+}
+
+- (void)cancelExportBeforeBeginning {
+	NSLog(@"In cancelExportBeforeBeginning");
+}
+
+- (void)cancelAction: (id)sender {
+	NSLog(@"In cancelAction");
+}
+
+- (void)cancelOperation: (id)sender {
+	NSLog(@"In cancelOperation");
+}
+
+- (void)cancel: (id)sender {
+	NSLog(@"In cancel");
+}
+
+- (void)cancelClicked: (id)sender {
+	NSLog(@"In cancelClicked");
+}
+
 - (void)viewWillBeActivated {
 	NSLog(@"In viewWillBeActivated");
 	prefs=[[NSUserDefaults standardUserDefaults] persistentDomainForName:[[NSBundle bundleForClass:[self class]] bundleIdentifier]];
@@ -241,8 +265,14 @@
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
 	int i;
-	for(i = 0; !populateImageRecordsShouldAbort && (i < [exportManager imageCount]); i++) {
-		NSLog(@"Populating image record at index %d", i);
+	for(i = 0;
+		!populateImageRecordsShouldAbort &&
+		// This is a hack to stop the process when "Cancel" is hit on the window, because in this
+		// case the viewWillBeDeactivated method is not called for some reason. We check that i>2
+		// because the conversion may start before the window becomes visible.
+		([[settingsBox window] isVisible] || i<3) &&
+		(i < [exportManager imageCount]); i++) {
+		NSLog(@"Populating image record at index %d, isVisible: %d", i, [[settingsBox window] isVisible]);
 		/*
 		 * There's a question about whether we should do this loop in reverse.  Copper orders
 		 * everything based on reverse-chronological upload time, so a large batch-upload 
