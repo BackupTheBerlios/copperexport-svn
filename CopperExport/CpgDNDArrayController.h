@@ -1,7 +1,3 @@
-//
-//  ImageRecord.h
-//  CopperExport
-//
 // Copyright (c) 2004, Fraser Speirs
 // All rights reserved.
 // 
@@ -29,73 +25,45 @@
 // ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
 
+/*
+ * NOTICE: This class is based on Apple Sample Code from:
+ *
+ * http://homepage.mac.com/mmalc/CocoaExamples/controllers.html
+ *
+ * IANAL, but it appears that I am allowed to relicense derivative works
+ * as I see fit.  If this is wrong, and anyone cares, please email
+ * me and we'll work it out.
+ */
 #import <Cocoa/Cocoa.h>
 
-@class ExportMgr;
 
-@interface ImageRecord : NSObject {
-	NSString *filePath;
-	NSMutableArray *tags;
-	NSString *title;
-	NSString *descriptionText;
-	BOOL public;
-	BOOL friendsAccess;
-	BOOL familyAccess;
-	BOOL landscape;
-	int newWidth;
-	int newHeight;
-	NSData *thumbnailData;
-	NSSize originalSize;
-	NSDictionary *exif;
+@interface CpgDNDArrayController : NSArrayController
+{
+    IBOutlet NSTableView *tableView;
+	
+	NSString *searchTerm;
 }
 
-+ (id)recordFromExporter: (ExportMgr *)exportManager atIndex: (int)idx;
-- (id)initWithImageManager: (ExportMgr *)exportManager index: (int)idx;
+- (IBAction)search: (id)sender;
+- (NSString *)searchTerm;
+- (void)setSearchTerm:(NSString *)aSearchTerm;
 
-- (void)clearAllTags;
+// table view drag and drop support
 
-- (BOOL)metadataContainsString: (NSString *)searchTerm;
+- (BOOL)tableView:(NSTableView *)tv writeRows:(NSArray*)rows toPasteboard:(NSPasteboard*)pboard;
+    
+- (NSDragOperation)tableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)op;
+    
+- (BOOL)tableView:(NSTableView*)tv acceptDrop:(id <NSDraggingInfo>)info row:(int)row dropOperation:(NSTableViewDropOperation)op;
+    
 
-- (NSString *)filePath;
-- (void)setFilePath:(NSString *)aFilePath;
+// utility methods
 
-- (NSString *)title;
-- (void)setTitle:(NSString *)aTitle;
+-(void)moveObjectsInArrangedObjectsFromIndexes:(NSIndexSet *)indexSet 
+				    toIndex:(unsigned)index;
 
-- (NSString *)descriptionText;
-- (void)setDescriptionText:(NSString *)aDescriptionText;
+- (NSIndexSet *)indexSetFromRows:(NSArray *)rows;
+- (int)rowsAboveRow:(int)row inIndexSet:(NSIndexSet *)indexSet;
 
-- (BOOL)public;
-- (void)setPublic:(BOOL)flag;
-
-- (BOOL)friendsAccess;
-- (void)setFriendsAccess:(BOOL)flag;
-
-- (BOOL)familyAccess;
-- (void)setFamilyAccess:(BOOL)flag;
-
-- (int)newWidth;
-- (void)setNewWidth:(int)aNewWidth;
-
-- (int)newHeight;
-- (void)setNewHeight:(int)aNewHeight;
-
-- (NSMutableArray *)tags;
-- (void)setTags:(NSMutableArray *)aTags;
-
-- (NSData *)thumbnailData;
-- (void)setThumbnailData:(NSData *)aThumbnailData;
-
-- (BOOL)landscape;
-- (void)setLandscape:(BOOL)flag;
-
-- (NSSize)originalSize;
-- (void)setOriginalSize:(NSSize)anOriginalSize;
-
-- (BOOL)needsResize;
-
-- (NSDictionary *)exif;
-- (void)setExif:(NSDictionary *)anExif;
 @end

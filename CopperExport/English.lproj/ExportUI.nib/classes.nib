@@ -48,7 +48,7 @@
         }, 
         {
             ACTIONS = {search = id; }; 
-            CLASS = DNDArrayController; 
+            CLASS = CpgDNDArrayController; 
             LANGUAGE = ObjC; 
             OUTLETS = {tableView = NSTableView; }; 
             SUPERCLASS = NSArrayController; 

@@ -30,8 +30,8 @@
 
 
 #import "ImageDragTableview.h"
-#import "DNDArrayController.h"
-#import "ImageRecord.h"
+#import "CpgDNDArrayController.h"
+#import "CpgImageRecord.h"
 
 @implementation ImageDragTableview
 - (NSImage *)dragImageForRows:(NSArray *)dragRows 
@@ -41,7 +41,7 @@
 	/* This is eye candy for when we're dragging rows in the table. */
 	int rowNumber = [[dragRows objectAtIndex: 0] intValue];
 	
-	ImageRecord *rec = [[(DNDArrayController *)[self delegate] arrangedObjects] objectAtIndex: rowNumber];
+	CpgImageRecord *rec = [[(CpgDNDArrayController *)[self delegate] arrangedObjects] objectAtIndex: rowNumber];
 	
 	NSImage *thumb = [[[NSImage alloc] initWithData: [rec thumbnailData]] autorelease];
 	[thumb setScalesWhenResized: YES];

@@ -501,7 +501,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = FUKeyChain.h;
+			path = CpgKeyChain.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -509,7 +509,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.objc;
-			path = FUKeyChain.m;
+			path = CpgKeyChain.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -642,7 +642,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = ImageRecord.h;
+			path = CpgImageRecord.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -650,7 +650,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.objc;
-			path = ImageRecord.m;
+			path = CpgImageRecord.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -722,7 +722,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.objc;
-			path = DNDArrayController.m;
+			path = CpgDNDArrayController.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -730,7 +730,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = DNDArrayController.h;
+			path = CpgDNDArrayController.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};

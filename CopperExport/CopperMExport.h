@@ -109,7 +109,7 @@
 - (id)initWithExportImageObj:(ExportMgr *)exportMgr;
 
 - (NSMutableArray *)imageRecords;
-- (void)setImageRecords:(NSMutableArray *)anImageRecords;
+- (void)setCpgImageRecords:(NSMutableArray *)anCpgImageRecords;
 
 - (BOOL)shouldOpenCopper;
 - (void)setShouldOpenCopper:(BOOL)flag;

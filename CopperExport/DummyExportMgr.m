@@ -19,7 +19,7 @@
 	return nil;
 }
 
-// ImageRecord
+// CpgImageRecord
 - (NSDictionary *)imageDictionaryAtIndex:(int)index {
 	return nil;
 }

@@ -32,7 +32,7 @@
 //
 
 #import "CopperUploader.h"
-#import "ImageRecord.h"
+#import "CpgImageRecord.h"
 #import "CopperAlbum.h"
 
 @interface CopperUploader (PrivateAPI)
@@ -370,7 +370,7 @@ The idea here is that we kick off the first image upload, and set our cursor to 
 @implementation CopperUploader (PrivateAPI)
 - (void)uploadNextImage {
 
-	ImageRecord *image = [imageRecords objectAtIndex: cursor];
+	CpgImageRecord *image = [imageRecords objectAtIndex: cursor];
 	NSLog([@"Uploading image " stringByAppendingString:[image filePath]]);
 	NSString *tmpfile = [@"/tmp/" stringByAppendingPathComponent:[[image filePath] lastPathComponent]];
 	

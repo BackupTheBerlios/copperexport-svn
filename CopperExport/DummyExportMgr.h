@@ -17,7 +17,7 @@
 - (int)imageCount;
 - (id)exportController;
 
-// ImageRecord
+// CpgImageRecord
 - (NSDictionary *)imageDictionaryAtIndex:(int)index;
 - (NSString *)imagePathAtIndex:(int)index;
 - (BOOL)imageIsPortraitAtIndex:(int)index;

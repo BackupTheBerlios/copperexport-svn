@@ -1,5 +1,5 @@
 //
-//  ImageRecord.m
+//  CpgImageRecord.m
 //  CopperExport
 //
 // Copyright (c) 2004, Fraser Speirs
@@ -31,17 +31,17 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "ImageRecord.h"
+#import "CpgImageRecord.h"
 #import "ExportMgr.h"
 
-@interface ImageRecord (Private)
+@interface CpgImageRecord (Private)
 - (void)populateExif;
 @end
 
-@implementation ImageRecord
+@implementation CpgImageRecord
 
 + (id)recordFromExporter: (ExportMgr *)exportManager atIndex: (int)idx {
-	ImageRecord *rec = [[ImageRecord alloc] initWithImageManager: exportManager index: idx];
+	CpgImageRecord *rec = [[CpgImageRecord alloc] initWithImageManager: exportManager index: idx];
 
 	return [rec autorelease];
 }
@@ -382,7 +382,7 @@
 }
 @end
 
-@implementation ImageRecord (Private)
+@implementation CpgImageRecord (Private)
 - (void)populateExif {
 	NSString *path = [self filePath];
 	if(path) {

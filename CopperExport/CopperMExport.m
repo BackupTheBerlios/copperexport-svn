@@ -32,9 +32,9 @@
 //
 
 #import "CopperMExport.h"
-#import "ImageRecord.h"
+#import "CpgImageRecord.h"
 #import "CopperResponse.h"
-#import "FUKeyChain.h"
+#import "CpgKeyChain.h"
 
 @implementation CopperMExport
 - (id)description {
@@ -111,7 +111,7 @@
 		
 		double progressSteps = (double)[[self imageRecords] count] * 2.0;
 		NSEnumerator *en = [[self imageRecords] objectEnumerator];
-		ImageRecord *anImage;
+		CpgImageRecord *anImage;
 		while(anImage = [en nextObject]) {
 			if([anImage needsResize]) {
 				progressSteps += 2.0;
@@ -202,7 +202,7 @@
 	
 	albums = [NSMutableArray arrayWithCapacity:5];
 	
-	[self setImageRecords: [NSMutableArray array]];
+	[self setCpgImageRecords: [NSMutableArray array]];
 	int i;
 	for(i = 0; i < [exportManager imageCount]; i++) {
 		/*
@@ -210,7 +210,7 @@
 		 * everything based on reverse-chronological upload time, so a large batch-upload 
 		 * appears in reverse order from the way it is in iPhoto.
 		 */
-		[[self mutableArrayValueForKey: @"imageRecords"] addObject: [ImageRecord recordFromExporter: exportManager atIndex: i]];
+		[[self mutableArrayValueForKey: @"imageRecords"] addObject: [CpgImageRecord recordFromExporter: exportManager atIndex: i]];
 	}
 	
 	[recordController setSelectionIndexes: [NSIndexSet indexSet]];
@@ -335,7 +335,7 @@
 }
 
 - (void)controlTextDidChange: (NSNotification *)note {
-	ImageRecord *imgRec = [[recordController selectedObjects] objectAtIndex: 0];
+	CpgImageRecord *imgRec = [[recordController selectedObjects] objectAtIndex: 0];
 	
 	id sender = [note object];
 	if(sender == resizeWidth) {
@@ -361,7 +361,7 @@
 
 - (IBAction)applyCurrentScalingToAll:(id)sender {
 	[[settingsBox window] endEditingFor: nil];
-	ImageRecord *currentImage = [[recordController selectedObjects] objectAtIndex:0];
+	CpgImageRecord *currentImage = [[recordController selectedObjects] objectAtIndex:0];
 	BOOL currentDimensionsAreLandscape = [currentImage newWidth] > [currentImage newHeight];
 	
 	int shortSide, longSide;
@@ -375,7 +375,7 @@
 	}
 	
 	NSEnumerator *en = [[self imageRecords] objectEnumerator];
-	ImageRecord *rec;
+	CpgImageRecord *rec;
 	
 	while(rec = [en nextObject]) {
 		if([rec newWidth] > [rec newHeight]) { // Is landscape
@@ -391,14 +391,14 @@
 
 - (IBAction)applyCurrentAccessToAll: (id)sender {
 	[[settingsBox window] endEditingFor: nil];
-	ImageRecord *currentImage = [[recordController selectedObjects] objectAtIndex:0];
+	CpgImageRecord *currentImage = [[recordController selectedObjects] objectAtIndex:0];
 	
 	BOOL currentPublicSetting = [currentImage public];
 	BOOL currentFriendsSetting = [currentImage friendsAccess];
 	BOOL currentFamilySetting = [currentImage familyAccess];
 
 	NSEnumerator *en = [[self imageRecords] objectEnumerator];
-	ImageRecord *rec;
+	CpgImageRecord *rec;
 	
 	while(rec = [en nextObject]) {
 		[rec setFriendsAccess: currentFriendsSetting];
@@ -409,12 +409,12 @@
 
 - (IBAction)applyCurrentTagsToAll: (id)sender {
 	[[settingsBox window] endEditingFor: nil];
-	ImageRecord *currentImage = [[recordController selectedObjects] objectAtIndex:0];
+	CpgImageRecord *currentImage = [[recordController selectedObjects] objectAtIndex:0];
 	
 	NSArray *selectedTags = [currentImage tags];
 	
 	NSEnumerator *en = [[self imageRecords] objectEnumerator];
-	ImageRecord *rec;
+	CpgImageRecord *rec;
 	
 	while(rec = [en nextObject]) {
 		// Let's just be really careful not to alias any pointers here, OK?
@@ -433,7 +433,7 @@
 	
 	NSString *tag = [[tagController selectedObjects] objectAtIndex: 0];
 	NSEnumerator *en = [[self imageRecords] objectEnumerator];
-	ImageRecord *rec;
+	CpgImageRecord *rec;
 	
 	while(rec = [en nextObject]) {
 		NSMutableArray *recordTags = [rec tags];
@@ -447,13 +447,13 @@
 }
 
 - (IBAction)applyTitleToAll: (id)sender {
-	ImageRecord *rec = [[recordController selectedObjects] objectAtIndex: 0];
+	CpgImageRecord *rec = [[recordController selectedObjects] objectAtIndex: 0];
 	[[self imageRecords] makeObjectsPerformSelector: @selector(setTitle:)
 										 withObject: [rec title]];
 }
 
 - (IBAction)applyDescriptionToAll: (id)sender {
-	ImageRecord *rec = [[recordController selectedObjects] objectAtIndex: 0];
+	CpgImageRecord *rec = [[recordController selectedObjects] objectAtIndex: 0];
 	[[self imageRecords] makeObjectsPerformSelector: @selector(setDescriptionText:)
 										 withObject: [rec descriptionText]];
 }
@@ -472,13 +472,13 @@
 }
 
 // ===========================================================
-// - setImageRecords:
+// - setCpgImageRecords:
 // ===========================================================
-- (void)setImageRecords:(NSMutableArray *)anImageRecords {
-    if (imageRecords != anImageRecords) {
-        [anImageRecords retain];
+- (void)setCpgImageRecords:(NSMutableArray *)anCpgImageRecords {
+    if (imageRecords != anCpgImageRecords) {
+        [anCpgImageRecords retain];
         [imageRecords release];
-        imageRecords = anImageRecords;
+        imageRecords = anCpgImageRecords;
     }
 }
 
@@ -575,12 +575,12 @@
 - (NSString *)passwordForUsername: (NSString *)uname {
 	NSString *serviceString = [NSString stringWithFormat: @"CopperExport: %@", uname];
 
-	return [[FUKeyChain defaultKeyChain] passwordForService: serviceString account: uname];
+	return [[CpgKeyChain defaultKeyChain] passwordForService: serviceString account: uname];
 }
 
 - (void) savePasswordToKeychain {
 	NSString *serviceString = [NSString stringWithFormat: @"CopperExport: %@", [self username]];
-	[[FUKeyChain defaultKeyChain] setPassword: [self password]
+	[[CpgKeyChain defaultKeyChain] setPassword: [self password]
 								 forService: serviceString
 									account: [self username]];
 }

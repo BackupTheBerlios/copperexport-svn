@@ -36,12 +36,12 @@
  * me and we'll work it out.
  */
 
-#import "DNDArrayController.h"
-#import "ImageRecord.h"
+#import "CpgDNDArrayController.h"
+#import "CpgImageRecord.h"
 
-NSString *MovedRowsType = @"CopperImageRecordType";
+NSString *MovedRowsType = @"CopperCpgImageRecordType";
 
-@implementation DNDArrayController
+@implementation CpgDNDArrayController
 
 - (void)awakeFromNib
 {
@@ -92,7 +92,7 @@ NSString *MovedRowsType = @"CopperImageRecordType";
 	NSString *lowerSearch = [searchTerm lowercaseString];
 
 	NSEnumerator *oEnum = [objects objectEnumerator];
-	ImageRecord *item;	
+	CpgImageRecord *item;	
 	while (item = [oEnum nextObject])
 	{
 			// Use of local autorelease pool here is probably overkill,
