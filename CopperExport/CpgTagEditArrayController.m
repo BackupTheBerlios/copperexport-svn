@@ -1,7 +1,10 @@
 //
-//  ImageDragTableview.m
+//  CpgTagEditArrayController.m
 //  CopperExport
 //
+// Copyright (c) 2004, Fraser Speirs
+// All rights reserved.
+// 
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
 // 
@@ -28,36 +31,18 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import "CpgTagEditArrayController.h"
 
-#import "ImageDragTableview.h"
-#import "CpgDNDArrayController.h"
-#import "CpgImageRecord.h"
 
-@implementation ImageDragTableview
-- (NSImage *)dragImageForRows:(NSArray *)dragRows 
-						event:(NSEvent *)dragEvent
-			  dragImageOffset:(NSPointPointer)dragImageOffset 
-{
-	/* This is eye candy for when we're dragging rows in the table. */
-	int rowNumber = [[dragRows objectAtIndex: 0] intValue];
-	
-	CpgImageRecord *rec = [[(CpgDNDArrayController *)[self delegate] arrangedObjects] objectAtIndex: rowNumber];
-	
-	NSImage *thumb = [[[NSImage alloc] initWithData: [rec thumbnailData]] autorelease];
-	[thumb setScalesWhenResized: YES];
-	
-	NSSize thumbnailSize;
-	int kThumbLongestSide = 50;
-	// Check if it's landscape
-	if([thumb size].width > [thumb size].height) {
-		float factor = [thumb size].width/kThumbLongestSide;
-		thumbnailSize = NSMakeSize(kThumbLongestSide, [thumb size].height/factor);
-	} else {
-		float factor = [thumb size].height/kThumbLongestSide;
-		thumbnailSize = NSMakeSize([thumb size].width/factor, kThumbLongestSide);
-	}
+@implementation CpgTagEditArrayController
 
-	[thumb setSize: thumbnailSize];
-	return thumb;
+- (void)addObject:(id)object {
+	[super addObject: object];
+	
+	[table editColumn: 0
+				  row: [table numberOfRows]-1
+			withEvent: nil 
+			   select: YES];
 }
+
 @end

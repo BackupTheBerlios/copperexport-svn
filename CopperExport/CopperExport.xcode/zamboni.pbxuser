@@ -27,11 +27,12 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					242,
+					226,
 					20,
-					48,
+					40,
 					43,
 					43,
+					20,
 					20,
 				);
 				PBXFileTableDataSourceColumnsKey = (
@@ -42,6 +43,7 @@
 					PBXFileDataSource_Errors_ColumnID,
 					PBXFileDataSource_Warnings_ColumnID,
 					PBXFileDataSource_Target_ColumnID,
+					PBXFileDataSource_SCM_ColumnID,
 				);
 			};
 			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
@@ -251,12 +253,7 @@
 			519DF8C307A4072F00FDA8B5 = 519DF8C307A4072F00FDA8B5;
 			519DF8C407A4072F00FDA8B5 = 519DF8C407A4072F00FDA8B5;
 			519DF8C507A4072F00FDA8B5 = 519DF8C507A4072F00FDA8B5;
-			519DF8C607A4072F00FDA8B5 = 519DF8C607A4072F00FDA8B5;
-			519DF8C907A4073500FDA8B5 = 519DF8C907A4073500FDA8B5;
-			519DF8CA07A4073E00FDA8B5 = 519DF8CA07A4073E00FDA8B5;
-			519DF8CB07A4074D00FDA8B5 = 519DF8CB07A4074D00FDA8B5;
-			519DF8CC07A4076A00FDA8B5 = 519DF8CC07A4076A00FDA8B5;
-			519DF8CD07A4077500FDA8B5 = 519DF8CD07A4077500FDA8B5;
+			519DF8D307A409DE00FDA8B5 = 519DF8D307A409DE00FDA8B5;
 		};
 		sourceControlManager = 514A609507A2EE72003C7B12;
 		userBuildSettings = {
@@ -345,57 +342,7 @@
 		vrLen = 175;
 		vrLoc = 10049;
 	};
-	519DF8C607A4072F00FDA8B5 = {
-		fRef = 5F22633606CE2F0C0029AD4D;
-		isa = PBXTextBookmark;
-		name = objectAtIndex;
-		rLen = 13;
-		rLoc = 20749;
-		rType = 0;
-		vrLen = 199;
-		vrLoc = 20601;
-	};
-	519DF8C907A4073500FDA8B5 = {
-		fRef = 5F22633606CE2F0C0029AD4D;
-		isa = PBXTextBookmark;
-		name = objectAtIndex;
-		rLen = 13;
-		rLoc = 20749;
-		rType = 0;
-		vrLen = 199;
-		vrLoc = 20601;
-	};
-	519DF8CA07A4073E00FDA8B5 = {
-		fRef = 5F22633606CE2F0C0029AD4D;
-		isa = PBXTextBookmark;
-		name = objectAtIndex;
-		rLen = 13;
-		rLoc = 20749;
-		rType = 0;
-		vrLen = 199;
-		vrLoc = 20601;
-	};
-	519DF8CB07A4074D00FDA8B5 = {
-		fRef = 5F22633606CE2F0C0029AD4D;
-		isa = PBXTextBookmark;
-		name = objectAtIndex;
-		rLen = 13;
-		rLoc = 20749;
-		rType = 0;
-		vrLen = 199;
-		vrLoc = 20601;
-	};
-	519DF8CC07A4076A00FDA8B5 = {
-		fRef = 5F22633606CE2F0C0029AD4D;
-		isa = PBXTextBookmark;
-		name = objectAtIndex;
-		rLen = 13;
-		rLoc = 20749;
-		rType = 0;
-		vrLen = 199;
-		vrLoc = 20601;
-	};
-	519DF8CD07A4077500FDA8B5 = {
+	519DF8D307A409DE00FDA8B5 = {
 		fRef = 5F22633606CE2F0C0029AD4D;
 		isa = PBXTextBookmark;
 		name = objectAtIndex;

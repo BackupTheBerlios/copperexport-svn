@@ -204,6 +204,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -248,8 +250,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>8</integer>
-									<integer>7</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -315,14 +316,12 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20506471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Targets</string>
+								<string>Detail</string>
 							</dict>
 							<key>GeometryConfiguration</key>
 							<dict>
@@ -353,9 +352,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>51AF7F3707A3C15400AB1B77</string>
+				<string>519DF8BB07A3F25600FDA8B5</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>51AF7F3807A3C15400AB1B77</string>
+				<string>519DF8BC07A3F25600FDA8B5</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -383,6 +382,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>519DF8D007A409DD00FDA8B5</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
+		<string>514A609C07A2EE95003C7B12</string>
 		<string>/Users/zamboni/Devel/Cocoa/CopperExport/CopperExport.xcode</string>
 	</array>
 	<key>WindowString</key>
@@ -475,7 +477,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>514A609C07A2EE95003C7B12</string>
-				<string>51C1401E07A3BF790011686A</string>
+				<string>519DF8BF07A4056100FDA8B5</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -609,7 +611,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>CopperAlbum.m</string>
+										<string>CopperMExport.m</string>
 										<key>PBXSplitModuleInNavigatorKey</key>
 										<dict>
 											<key>Split0</key>
@@ -617,17 +619,19 @@
 												<key>PBXProjectModuleGUID</key>
 												<string>1CD0528D0623707200166675</string>
 												<key>PBXProjectModuleLabel</key>
-												<string>CopperAlbum.m</string>
+												<string>CopperMExport.m</string>
 												<key>bookmark</key>
-												<string>51C09CC907A303CD003B9916</string>
+												<string>519DF8D307A409DE00FDA8B5</string>
 												<key>history</key>
 												<array>
-													<string>51C09CC307A303CD003B9916</string>
-													<string>51C09CC207A303BC003B9916</string>
+													<string>519DF8C107A4072F00FDA8B5</string>
+													<string>519DF8C207A4072F00FDA8B5</string>
 												</array>
 												<key>prevStack</key>
 												<array>
-													<string>51C09CC407A303CD003B9916</string>
+													<string>519DF8C307A4072F00FDA8B5</string>
+													<string>519DF8C407A4072F00FDA8B5</string>
+													<string>519DF8C507A4072F00FDA8B5</string>
 												</array>
 											</dict>
 											<key>SplitCount</key>
@@ -690,8 +694,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>51C09CC607A303CD003B9916</string>
-				<string>51C09CC707A303CD003B9916</string>
+				<string>519DF8C707A4072F00FDA8B5</string>
+				<string>519DF8C807A4072F00FDA8B5</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -700,7 +704,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -853,6 +857,8 @@
 			<false/>
 		</dict>
 		<dict>
+			<key>FirstTimeWindowDisplayed</key>
+			<false/>
 			<key>Identifier</key>
 			<string>windowTool.scm</string>
 			<key>Layout</key>
@@ -885,7 +891,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {452, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>743 379 452 308 0 0 1280 1002 </string>
+								<string>337 266 452 308 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -909,7 +915,7 @@
 								<key>Frame</key>
 								<string>{{0, 7}, {452, 259}}</string>
 								<key>RubberWindowFrame</key>
-								<string>743 379 452 308 0 0 1280 1002 </string>
+								<string>337 266 452 308 0 0 1280 832 </string>
 								<key>TableConfiguration</key>
 								<array>
 									<string>Status</string>
@@ -942,13 +948,17 @@
 			<true/>
 			<key>TableOfContents</key>
 			<array>
-				<string>1C78EAB4065D492600B07095</string>
-				<string>1C78EAB5065D492600B07095</string>
+				<string>519DF8D007A409DD00FDA8B5</string>
+				<string>519DF8D107A409DD00FDA8B5</string>
 				<string>1C78EAB2065D492600B07095</string>
 				<string>1CD052920623707200166675</string>
 			</array>
 			<key>WindowString</key>
-			<string>743 379 452 308 0 0 1280 1002 </string>
+			<string>337 266 452 308 0 0 1280 832 </string>
+			<key>WindowToolGUID</key>
+			<string>519DF8D007A409DD00FDA8B5</string>
+			<key>WindowToolIsVisible</key>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

@@ -53,6 +53,13 @@
             OUTLETS = {tableView = NSTableView; }; 
             SUPERCLASS = NSArrayController; 
         }, 
+        {CLASS = CpgImageDragTableview; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
+        {
+            CLASS = CpgTagEditArrayController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {table = NSTableView; }; 
+            SUPERCLASS = NSArrayController; 
+        }, 
         {
             CLASS = FUCopperBox; 
             LANGUAGE = ObjC; 
@@ -64,13 +71,6 @@
             CLASS = FirstResponder; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSObject; 
-        }, 
-        {CLASS = ImageDragTableview; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
-        {
-            CLASS = TagEditArrayController; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {table = NSTableView; }; 
-            SUPERCLASS = NSArrayController; 
         }
     ); 
     IBVersion = 1; 
