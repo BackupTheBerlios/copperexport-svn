@@ -1,0 +1,5 @@
+objects.nib -k 'b'
+keyedobjects.nib -k 'b'
+*.tiff -k 'b'
+*.gif -k 'b'
+*.jpg -k 'b'
