@@ -1,3 +1,4 @@
+// Originally called FUFlickrBox.m
 //
 //  CopperBox.m
 //  CopperExport

@@ -5,10 +5,13 @@
 \margl1440\margr1440\vieww11260\viewh14440\viewkind0
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
 
-\f0\b\fs24 \cf0 CopperExport for iPhoto
+\f0\b\fs24 \cf0 CopperExport for iPhoto\
+Version 0.1
 \f1\b0 \
 \
 CopperExport for iPhoto is a plugin for iPhoto 4.x which allows you to export pictures directly into a Coppermine gallery (http://coppermine.sf.net/).\
+\
+This is the first release of CopperExport. It works for me, but there may be many things that don't work properly. Please drop me a note if you find them.\
 \
 
 \f0\b System Requirements
@@ -17,6 +20,8 @@ CopperExport for iPhoto is a plugin for iPhoto 4.x which allows you to export pi
 CopperExport for iPhoto requires Mac OS X 10.3 Panther and iPhoto 4.x.  iPhoto 2.x 
 \f2\i may
 \f1\i0  work, but has not been tested.  Versions of Mac OS X prior to 10.3 will certainly not work.\
+\
+It has been tested with Coppermine 1.3.2. Older versions may work, but have not been tested. See the notes below on optional (but recommended) server-side configuration.\
 \
 
 \f0\b Installation
@@ -46,8 +51,8 @@ Included in this release are two files:\
 
 \f3 \cf0 xp_publish.php
 \f1 : this is the file from release 1.3.2 of Coppermine, already with the necessary modifications. Simply replace the existing 
-\f3 \cf0 xp_publish.php
-\f1 \cf0  file in your Coppermine installation directory with this one.\
+\f3 xp_publish.php
+\f1  file in your Coppermine installation directory with this one.\
 \
 
 \f3 xp_publish.php.cpg132.patch
@@ -80,14 +85,14 @@ The changes to
 \f1\b0 \
 CopperExport for iPhoto was written by Diego Zamboni. It is based 
 \f0\b very
-\f1\b0  heavily in (as in, most of the code comes from) the FlickrExport plugin by Fraser Speirs (http://www.speirs.org/flickrexport).  Many thanks to Fraser for an excellent piece of code, and for releasing it as open source!\
+\f1\b0  heavily in (as in, most of the base code comes from) the FlickrExport plugin by Fraser Speirs (http://www.speirs.org/flickrexport).  Many thanks to Fraser for an excellent piece of code, and for releasing it as open source!\
 \
 CopperExport, just like FlickrExport, is licensed under the BSD License.  The following information may be of interest:\
 \
 \pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
 
 \f4\i\b \cf0 Author's Email:
-\f1\i0\b0  diego@zzamboni.org\
+\f1\i0\b0  copperexport@zzamboni.org\
 
 \f4\i\b Product Home Page:
 \f1\i0\b0  http://www.zzamboni.org/copperexport/\

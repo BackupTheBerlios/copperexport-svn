@@ -1,3 +1,4 @@
+// Originally called TagEditArrayController.m
 //
 //  CpgTagEditArrayController.m
 //  CopperExport

@@ -1,3 +1,5 @@
+// Originally called FUKeyChain.h
+//
 // Copyright (c) 2004, Fraser Speirs
 // All rights reserved.
 // 

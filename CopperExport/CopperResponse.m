@@ -1,6 +1,9 @@
 //
 //  CopperResponse.m
-//  CopperExport
+//
+// Copyright (c) 2005, Diego Zamboni
+// Based on code by Fraser Speirs, original license shown below.
+// Originally called FlickrResponse.m
 //
 // Copyright (c) 2004, Fraser Speirs
 // All rights reserved.

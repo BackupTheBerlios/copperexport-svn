@@ -1,3 +1,4 @@
+// Originally called FUFlickrBox.h
 //
 //  CopperBox.h
 //  CopperExport

@@ -1,3 +1,4 @@
+// Originally called ImageRecord.h
 //
 //  CpgImageRecord.h
 //  CopperExport

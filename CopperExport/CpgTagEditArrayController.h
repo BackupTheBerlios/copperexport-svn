@@ -1,3 +1,4 @@
+// Originally called TagEditArrayController.h
 //
 //  CpgTagEditArrayController.h
 //  CopperExport

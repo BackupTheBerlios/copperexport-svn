@@ -1,3 +1,4 @@
+// Originally called ImageRecord.m
 //
 //  CpgImageRecord.m
 //  CopperExport
