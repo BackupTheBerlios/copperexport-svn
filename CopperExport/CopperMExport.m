@@ -90,9 +90,15 @@
 		[uploader getPublishInfo];
 		[self setAlbums:[uploader albums]];
 		[self setSelectedAlbum:nil];
-		[self setSelectedAlbum:[albums objectAtIndex:0]];
+		if (albums && [albums count] > 0)
+			[self setSelectedAlbum:[albums objectAtIndex:0]];
+		else
+			[self setSelectedAlbum:nil];
 		[self setCategories:[uploader categories]];
-		[self setSelectedCategory:[categories objectAtIndex:0]];
+		if (categories && [categories count] > 0)
+			[self setSelectedCategory:[categories objectAtIndex:0]];
+		else
+			[self setSelectedCategory:nil];
 		if (newAlbumName) {
 			[newAlbumName release];
 		}

@@ -12,6 +12,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				PREBINDING = NO;
 				ZERO_LINK = YES;
 			};
 			isa = PBXBuildStyle;
@@ -445,7 +446,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = TagEditArrayController.h;
+			path = CpgTagEditArrayController.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -453,7 +454,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.objc;
-			path = TagEditArrayController.m;
+			path = CpgTagEditArrayController.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -543,7 +544,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = ImageDragTableview.h;
+			path = CpgImageDragTableview.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -551,7 +552,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.objc;
-			path = ImageDragTableview.m;
+			path = CpgImageDragTableview.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -774,47 +775,11 @@
 			settings = {
 			};
 		};
-		5FEF1FF2074A3B03000AC5B8 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			path = CopperTests.h;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5FEF1FF3074A3B03000AC5B8 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.objc;
-			path = CopperTests.m;
-			refType = 4;
-			sourceTree = "<group>";
-		};
 		5FEF1FF8074A3B06000AC5B8 = {
 			children = (
-				5FEF1FFF074A3B8E000AC5B8,
-				5FEF2000074A3B8E000AC5B8,
-				5FEF1FF2074A3B03000AC5B8,
-				5FEF1FF3074A3B03000AC5B8,
 			);
 			isa = PBXGroup;
 			name = "Unit Tests";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5FEF1FFF074A3B8E000AC5B8 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			path = DummyExportMgr.h;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5FEF2000074A3B8E000AC5B8 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.objc;
-			path = DummyExportMgr.m;
 			refType = 4;
 			sourceTree = "<group>";
 		};

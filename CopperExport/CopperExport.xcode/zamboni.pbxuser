@@ -66,7 +66,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 128172364;
+			PBXPerProjectTemplateStateSaveDate = 128184824;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -243,7 +243,20 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 128172364;
+			PBXWorkspaceStateSaveDate = 128184824;
+		};
+		perUserProjectItems = {
+			519DF8C107A4072F00FDA8B5 = 519DF8C107A4072F00FDA8B5;
+			519DF8C207A4072F00FDA8B5 = 519DF8C207A4072F00FDA8B5;
+			519DF8C307A4072F00FDA8B5 = 519DF8C307A4072F00FDA8B5;
+			519DF8C407A4072F00FDA8B5 = 519DF8C407A4072F00FDA8B5;
+			519DF8C507A4072F00FDA8B5 = 519DF8C507A4072F00FDA8B5;
+			519DF8C607A4072F00FDA8B5 = 519DF8C607A4072F00FDA8B5;
+			519DF8C907A4073500FDA8B5 = 519DF8C907A4073500FDA8B5;
+			519DF8CA07A4073E00FDA8B5 = 519DF8CA07A4073E00FDA8B5;
+			519DF8CB07A4074D00FDA8B5 = 519DF8CB07A4074D00FDA8B5;
+			519DF8CC07A4076A00FDA8B5 = 519DF8CC07A4076A00FDA8B5;
+			519DF8CD07A4077500FDA8B5 = 519DF8CD07A4077500FDA8B5;
 		};
 		sourceControlManager = 514A609507A2EE72003C7B12;
 		userBuildSettings = {
@@ -285,19 +298,126 @@
 		wantsCodeCompletionTabCompletes = 1;
 		wantsIndex = 1;
 	};
+	519DF8C107A4072F00FDA8B5 = {
+		fRef = 5F22635606CE5E200029AD4D;
+		isa = PBXTextBookmark;
+		name = objectAtIndex;
+		rLen = 13;
+		rLoc = 10176;
+		rType = 0;
+		vrLen = 175;
+		vrLoc = 10049;
+	};
+	519DF8C207A4072F00FDA8B5 = {
+		fRef = 5F22633606CE2F0C0029AD4D;
+		isa = PBXTextBookmark;
+		rLen = 13;
+		rLoc = 20749;
+		rType = 0;
+	};
+	519DF8C307A4072F00FDA8B5 = {
+		fRef = 5F22635606CE5E200029AD4D;
+		isa = PBXTextBookmark;
+		name = objectAtIndex;
+		rLen = 13;
+		rLoc = 16134;
+		rType = 0;
+		vrLen = 222;
+		vrLoc = 16048;
+	};
+	519DF8C407A4072F00FDA8B5 = {
+		fRef = 5F22633606CE2F0C0029AD4D;
+		isa = PBXTextBookmark;
+		name = "CopperMExport.m: 93";
+		rLen = 0;
+		rLoc = 3379;
+		rType = 0;
+		vrLen = 280;
+		vrLoc = 3257;
+	};
+	519DF8C507A4072F00FDA8B5 = {
+		fRef = 5F22635606CE5E200029AD4D;
+		isa = PBXTextBookmark;
+		name = objectAtIndex;
+		rLen = 13;
+		rLoc = 10176;
+		rType = 0;
+		vrLen = 175;
+		vrLoc = 10049;
+	};
+	519DF8C607A4072F00FDA8B5 = {
+		fRef = 5F22633606CE2F0C0029AD4D;
+		isa = PBXTextBookmark;
+		name = objectAtIndex;
+		rLen = 13;
+		rLoc = 20749;
+		rType = 0;
+		vrLen = 199;
+		vrLoc = 20601;
+	};
+	519DF8C907A4073500FDA8B5 = {
+		fRef = 5F22633606CE2F0C0029AD4D;
+		isa = PBXTextBookmark;
+		name = objectAtIndex;
+		rLen = 13;
+		rLoc = 20749;
+		rType = 0;
+		vrLen = 199;
+		vrLoc = 20601;
+	};
+	519DF8CA07A4073E00FDA8B5 = {
+		fRef = 5F22633606CE2F0C0029AD4D;
+		isa = PBXTextBookmark;
+		name = objectAtIndex;
+		rLen = 13;
+		rLoc = 20749;
+		rType = 0;
+		vrLen = 199;
+		vrLoc = 20601;
+	};
+	519DF8CB07A4074D00FDA8B5 = {
+		fRef = 5F22633606CE2F0C0029AD4D;
+		isa = PBXTextBookmark;
+		name = objectAtIndex;
+		rLen = 13;
+		rLoc = 20749;
+		rType = 0;
+		vrLen = 199;
+		vrLoc = 20601;
+	};
+	519DF8CC07A4076A00FDA8B5 = {
+		fRef = 5F22633606CE2F0C0029AD4D;
+		isa = PBXTextBookmark;
+		name = objectAtIndex;
+		rLen = 13;
+		rLoc = 20749;
+		rType = 0;
+		vrLen = 199;
+		vrLoc = 20601;
+	};
+	519DF8CD07A4077500FDA8B5 = {
+		fRef = 5F22633606CE2F0C0029AD4D;
+		isa = PBXTextBookmark;
+		name = objectAtIndex;
+		rLen = 13;
+		rLoc = 20749;
+		rType = 0;
+		vrLen = 199;
+		vrLoc = 20601;
+	};
 	5F22633606CE2F0C0029AD4D = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1040, 10443}}";
-			sepNavSelRange = "{19370, 0}";
-			sepNavVisRect = "{{0, 84}, {711, 428}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1040, 10527}}";
+			sepNavSelRange = "{20749, 13}";
+			sepNavVisRect = "{{0, 9602}, {740, 74}}";
 			sepNavWindowFrame = "{{15, 269}, {750, 558}}";
 		};
 	};
 	5F22635606CE5E200029AD4D = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1154, 7797}}";
-			sepNavSelRange = "{44, 1569}";
-			sepNavVisRect = "{{0, 0}, {711, 428}}";
+			sepNavSelRange = "{10176, 13}";
+			sepNavVisRect = "{{0, 4212}, {740, 74}}";
 		};
 	};
 	5FE0C30E07521BC5005DE0CE = {
@@ -318,5 +438,13 @@
 	};
 	8D5B49AC048680CD000E48DA = {
 		activeExec = 0;
+	};
+	8D5B49B7048680CD000E48DA = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {711, 428}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {711, 428}}";
+			sepNavWindowFrame = "{{61, 227}, {750, 558}}";
+		};
 	};
 }
