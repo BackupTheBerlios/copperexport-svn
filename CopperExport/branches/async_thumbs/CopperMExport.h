@@ -91,6 +91,7 @@
 
 	// Image View
 	IBOutlet NSImageView *imageView;
+	BOOL populateImageRecordsShouldAbort;
 	
 	// List of albums
 	NSMutableArray *albums;
@@ -175,5 +176,7 @@
 
 - (NSString *)version;
 - (void)setVersion: (NSString *)newversion;
+- (void)populateImageRecords;
+- (void)abortPopulateImageRecords;
 
 @end

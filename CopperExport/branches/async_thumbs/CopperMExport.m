@@ -48,7 +48,7 @@
 	return NSLocalizedString(@"Coppermine", @"Title of the tab, I think");
 }
 
-- (void)cancelExport {}
+- (void)cancelExport { NSLog(@"In cancel export"); }
 
 - (void)unlockProgress {}
 
@@ -209,10 +209,13 @@
 }
 
 - (void)viewWillBeDeactivated {
+	NSLog(@"In viewWillBeDeactivated");
+	[self abortPopulateImageRecords];
 	[self savePreferences];
 }
 
 - (void)viewWillBeActivated {
+	NSLog(@"In viewWillBeActivated");
 	prefs=[[NSUserDefaults standardUserDefaults] persistentDomainForName:[[NSBundle bundleForClass:[self class]] bundleIdentifier]];
 	[self setVersion:[[NSBundle bundleForClass:[self class]] objectForInfoDictionaryKey:@"CFBundleVersion"]];
 	
@@ -227,9 +230,19 @@
 	
 	albums = [NSMutableArray arrayWithCapacity:5];
 	
+	populateImageRecordsShouldAbort = NO;
 	[self setCpgImageRecords: [NSMutableArray array]];
+	[NSThread detachNewThreadSelector: @selector(populateImageRecords)
+							 toTarget: self
+						   withObject: nil];
+}
+
+- (void)populateImageRecords {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
 	int i;
-	for(i = 0; i < [exportManager imageCount]; i++) {
+	for(i = 0; !populateImageRecordsShouldAbort && (i < [exportManager imageCount]); i++) {
+		NSLog(@"Populating image record at index %d", i);
 		/*
 		 * There's a question about whether we should do this loop in reverse.  Copper orders
 		 * everything based on reverse-chronological upload time, so a large batch-upload 
@@ -237,9 +250,15 @@
 		 */
 		[[self mutableArrayValueForKey: @"imageRecords"] addObject: [CpgImageRecord recordFromExporter: exportManager atIndex: i]];
 	}
-	
-	[recordController setSelectionIndexes: [NSIndexSet indexSet]];
 
+	[recordController setSelectionIndexes: [NSIndexSet indexSet]];
+	
+	[pool release];
+}
+
+- (void)abortPopulateImageRecords {
+	NSLog(@"Setting populateImageRecordsShouldAbort");
+	populateImageRecordsShouldAbort = YES;
 }
 
 - (id)lastView {
@@ -584,6 +603,7 @@
 }
 
 - (void)savePreferences {
+	NSLog(@"In savePreferences");
 	[[settingsBox window] endEditingFor: nil];
 	if([self username] != nil) {
 		prefs = [[NSDictionary alloc] initWithObjects: [NSArray arrayWithObjects: [self username], [NSNumber numberWithBool: [self shouldOpenCopper]], [self cpgurl], nil]

@@ -120,7 +120,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 129914113;
+			PBXPerProjectTemplateStateSaveDate = 130015703;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -297,7 +297,11 @@
 					};
 				},
 			);
-			PBXWorkspaceStateSaveDate = 129914113;
+			PBXWorkspaceStateSaveDate = 130015703;
+		};
+		perUserProjectItems = {
+			511AAA8F07C157B200B84BA1 = 511AAA8F07C157B200B84BA1;
+			511AAA9507C79E1D00B84BA1 = 511AAA9507C79E1D00B84BA1;
 		};
 		sourceControlManager = 514A609507A2EE72003C7B12;
 		userBookmarkGroup = 512700FB07AC4B32008BFCBF;
@@ -318,6 +322,23 @@
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRect = "{{0, 0}, {711, 428}}";
 		};
+	};
+	511AAA8F07C157B200B84BA1 = {
+		fRef = 5F22633606CE2F0C0029AD4D;
+		isa = PBXTextBookmark;
+		rLen = 17;
+		rLoc = 11232;
+		rType = 0;
+	};
+	511AAA9507C79E1D00B84BA1 = {
+		fRef = 5F22633606CE2F0C0029AD4D;
+		isa = PBXTextBookmark;
+		name = "server-side error";
+		rLen = 17;
+		rLoc = 11232;
+		rType = 0;
+		vrLen = 802;
+		vrLoc = 10888;
 	};
 	512700FB07AC4B32008BFCBF = {
 		children = (
@@ -379,22 +400,22 @@
 	5F22632906CE2B260029AD4D = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {711, 490}}";
-			sepNavSelRange = "{0, 0}";
+			sepNavSelRange = "{272, 0}";
 			sepNavVisRect = "{{0, 0}, {711, 428}}";
 		};
 	};
 	5F22633506CE2F0C0029AD4D = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 2519}}";
+			sepNavIntBoundsRect = "{{0, 0}, {711, 2561}}";
 			sepNavSelRange = "{5269, 0}";
-			sepNavVisRect = "{{0, 2077}, {711, 428}}";
+			sepNavVisRect = "{{0, 368}, {711, 428}}";
 		};
 	};
 	5F22633606CE2F0C0029AD4D = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1130, 11269}}";
-			sepNavSelRange = "{7017, 0}";
-			sepNavVisRect = "{{0, 2902}, {744, 230}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1130, 11535}}";
+			sepNavSelRange = "{11232, 17}";
+			sepNavVisRect = "{{0, 4876}, {744, 230}}";
 			sepNavWindowFrame = "{{15, 269}, {750, 558}}";
 		};
 	};
@@ -416,7 +437,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {746, 1665}}";
 			sepNavSelRange = "{2905, 0}";
-			sepNavVisRect = "{{0, 1068}, {744, 230}}";
+			sepNavVisRect = "{{0, 512}, {711, 428}}";
 		};
 	};
 	5F22635606CE5E200029AD4D = {
