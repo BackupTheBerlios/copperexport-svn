@@ -270,7 +270,7 @@
 							<real>164</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>388 406 690 397 0 0 1280 832 </string>
+						<string>383 260 690 397 0 0 1280 832 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -307,7 +307,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {481, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>388 406 690 397 0 0 1280 832 </string>
+								<string>383 260 690 397 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -329,7 +329,7 @@
 								<key>Frame</key>
 								<string>{{0, 7}, {481, 348}}</string>
 								<key>RubberWindowFrame</key>
-								<string>388 406 690 397 0 0 1280 832 </string>
+								<string>383 260 690 397 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -353,9 +353,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>5143F6A707E4C7CC00995DC6</string>
+				<string>51AC39E507BE5B40002C5C7B</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>5143F6A807E4C7CC00995DC6</string>
+				<string>51AC39E607BE5B40002C5C7B</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -383,12 +383,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>51AC39F507BE5EBF002C5C7B</string>
 		<string>/Users/zamboni/Devel/Cocoa/CopperExport/CopperExport.xcode</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>5143F6AA07E4C7ED00995DC6</string>
 	</array>
 	<key>WindowString</key>
-	<string>388 406 690 397 0 0 1280 832 </string>
+	<string>383 260 690 397 0 0 1280 832 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>
@@ -407,7 +406,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>CopperMExport.m</string>
+								<string>CopperUploader.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -415,12 +414,17 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CD052900623707200166675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>CopperMExport.m</string>
+										<string>CopperUploader.m</string>
 										<key>bookmark</key>
-										<string>51DB53A707DB7BD700C6B77E</string>
+										<string>5104700307B2D69300608226</string>
 										<key>history</key>
 										<array>
-											<string>51DB539707D7C48000C6B77E</string>
+											<string>51BACBE307B2CACF00DF3337</string>
+											<string>51046FAF07B2D36000608226</string>
+										</array>
+										<key>prevStack</key>
+										<array>
+											<string>51BACBE507B2CACF00DF3337</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -483,7 +487,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>514A609C07A2EE95003C7B12</string>
-				<string>51DB539907D7C48000C6B77E</string>
+				<string>51046FB107B2D36000608226</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -617,7 +621,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>CopperMExport.m</string>
+										<string>InfoPlist.strings</string>
 										<key>PBXSplitModuleInNavigatorKey</key>
 										<dict>
 											<key>Split0</key>
@@ -625,26 +629,20 @@
 												<key>PBXProjectModuleGUID</key>
 												<string>1CD0528D0623707200166675</string>
 												<key>PBXProjectModuleLabel</key>
-												<string>CopperMExport.m</string>
+												<string>InfoPlist.strings</string>
 												<key>bookmark</key>
-												<string>5143F6E107E57AF100995DC6</string>
+												<string>5104700407B2D69300608226</string>
 												<key>history</key>
 												<array>
-													<string>5143F6B507E4CFCE00995DC6</string>
-													<string>5143F6B607E4CFCE00995DC6</string>
-													<string>5143F6C307E4D0D400995DC6</string>
-													<string>5143F6D807E573CF00995DC6</string>
-													<string>5143F6D907E573CF00995DC6</string>
+													<string>51BACBEF07B2CBBE00DF3337</string>
+													<string>51046FA107B2D29700608226</string>
+													<string>51046FA607B2D29700608226</string>
 												</array>
 												<key>prevStack</key>
 												<array>
-													<string>5143F6BA07E4CFCE00995DC6</string>
-													<string>5143F6BB07E4CFCE00995DC6</string>
-													<string>5143F6BC07E4CFCE00995DC6</string>
-													<string>5143F6BD07E4CFCE00995DC6</string>
-													<string>5143F6C507E4D0D400995DC6</string>
-													<string>5143F6DA07E573CF00995DC6</string>
-													<string>5143F6DB07E573CF00995DC6</string>
+													<string>51A2D3E007B185A200022535</string>
+													<string>51BACBF207B2CBBE00DF3337</string>
+													<string>51046FA507B2D29700608226</string>
 												</array>
 											</dict>
 											<key>SplitCount</key>
@@ -670,8 +668,6 @@
 							<string>262pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -707,8 +703,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>5143F6BF07E4CFCE00995DC6</string>
-				<string>5143F6C007E4CFCE00995DC6</string>
+				<string>51046FAA07B2D29700608226</string>
+				<string>51046FAB07B2D29700608226</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
