@@ -104,6 +104,15 @@
 		}
 		[self setNewAlbumName: nil];
 		[self setNewAlbumNameIsEmpty: YES];
+		[self setCanCreateAlbums: [uploader canCreateAlbums]];
+		
+		if (!([uploader areThereAlbums] || [uploader canCreateAlbums])) {
+			NSRunAlertPanel(NSLocalizedString(@"You cannot upload pictures", @"Title of you cannot upload pictures alert"),
+							NSLocalizedString(@"There are no albums where you can upload pictures, and you do not have permission to create new albums.",
+											  @"Message telling the user that he cannot upload pictures"),
+							NSLocalizedString(@"OK", @"OK"), nil, nil);
+			return;
+		}
 		
 		if ([self showAlbumsSheet: self] == -1) {
 			return;
@@ -141,12 +150,11 @@
 		
 		[self whichAlbum];
 		
-		NSLog(@"Selected album: %s", [[selectedAlbum stringValue] cString]);
+//		NSLog(@"Selected album: %s", [[selectedAlbum stringValue] cString]);
 		[uploader setSelectedAlbum: selectedAlbum];
-		NSLog(@"Selected category: %s", [[selectedCategory stringValue] cString]);
+//		NSLog(@"Selected category: %s", [[selectedCategory stringValue] cString]);
 		[uploader setSelectedCategory: selectedCategory];
 		
-		NSLog(@"Calling beginUpload");
 		if([exportManager imageCount] > 0) {
 			[NSThread detachNewThreadSelector: @selector(beginUpload)
 									 toTarget: uploader
@@ -500,7 +508,6 @@
 // - setUsername:
 // ===========================================================
 - (void)setUsername:(NSString *)anUsername {
-	NSLog(@"In CopperMExport::setUsername");
     if (username != anUsername) {
         [anUsername retain];
         [username release];
@@ -541,12 +548,10 @@
 // - setCpgurl:
 // ===========================================================
 - (void)setCpgurl:(NSString *)aCpgurl {
-	NSLog(@"In CopperMExport::setCpgurl");
     if (cpgurl != aCpgurl) {
         [aCpgurl retain];
         [cpgurl release];
         cpgurl = aCpgurl;
-		NSLog([@"cpgurl = " stringByAppendingString:cpgurl]);
     }
 }
 
@@ -631,19 +636,16 @@
 
 // Album selection
 - (int)showAlbumsSheet: (id)sender {
-	NSLog(@"Before runModalForWindow:albumsSheet");
 	return [NSApp runModalForWindow:albumsSheet];
 }
 
 - (IBAction)albumsSheetCancel: (id) sender {
-	NSLog(@"in albumsSheetCancel");
 	[albumsSheet orderOut:self];
 	[self setSelectedAlbum:nil];
 	[NSApp stopModalWithCode:-1];
 }
 
 - (IBAction)albumsSheetOK: (id) sender {
-	NSLog(@"in albumsSheetOK");
 	[albumsSheet orderOut:self];
 	[NSApp stopModalWithCode:0];
 }
@@ -714,14 +716,12 @@
 		// If the user specified a new album name, create it, otherwise just use the album
 		// that was selected in the popup list.
 		CopperAlbum *newalbum;
-		NSLog(@"whichAlbum: newAlbumName=%s, category=%d", [newAlbumName cString], [selectedCategory number]);
 		if (newAlbumName && [newAlbumName length] > 0) {
 			[progText setStringValue: [NSString stringWithFormat:@"Creating album %s", [newAlbumName cString]]];
 			[progBar incrementBy: 1.0];
 			newalbum = [uploader createNewAlbum:newAlbumName inCategory:[selectedCategory number]];
 			if (newalbum) {
 				[progBar incrementBy: 1.0];
-				NSLog(@"Created album: %s", [[newalbum stringValue] cString]);
 				[albums addObject:newalbum];
 				[self setSelectedAlbum: newalbum];
 			}
@@ -746,6 +746,14 @@
 - (void) setNewAlbumNameIsEmpty: (BOOL)newvalue {
 //	NSLog(@"Setting newAlbumNameIsEmpty to %d", newvalue);
 	newAlbumNameIsEmpty = newvalue;
+}
+
+- (BOOL) canCreateAlbums {
+	return canCreateAlbums;
+}
+
+- (void) setCanCreateAlbums: (BOOL)newvalue {
+	canCreateAlbums = newvalue;
 }
 
 @end

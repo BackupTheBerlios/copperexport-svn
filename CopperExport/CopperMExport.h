@@ -104,6 +104,7 @@
 	// New album name
 	NSString *newAlbumName;
 	BOOL newAlbumNameIsEmpty;
+	BOOL canCreateAlbums;
 }
 
 - (id)initWithExportImageObj:(ExportMgr *)exportMgr;
@@ -162,5 +163,7 @@
 - (BOOL) newAlbumNameIsEmpty;
 - (void) setNewAlbumNameIsEmpty: (BOOL)newvalue;
 - (void) whichAlbum;
+- (BOOL) canCreateAlbums;
+- (void) setCanCreateAlbums: (BOOL)newvalue;
 
 @end

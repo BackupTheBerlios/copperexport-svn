@@ -67,27 +67,21 @@ The idea here is that we kick off the first image upload, and set our cursor to 
 - (void)beginUpload {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	NSLog(@"In beginUpload");
 	[(NSObject *)[self delegate] performSelectorOnMainThread: @selector(uploaderDidBeginProcess)
 												  withObject: nil 
 											   waitUntilDone: YES];
 	int i;
-	NSLog(@"after 1");
 	NSMutableDictionary* post_dict = [[NSMutableDictionary alloc] initWithCapacity:2];
-	NSLog(@"after 2");
 	
 	NSAssert([imageRecords count] > 0, @"No images to upload");
-	NSLog(@"after 3");
 	
 	uploadShouldCancel = NO;
 	//for(cursor = 0; !uploadShouldCancel && cursor < [imageRecords count]; cursor++) {
 	// Want to do this in reverse in order to subvert Copper's reverse-chronological display
 	cursor = 0;
-	NSLog(@"beginning upload...");
 	for(; !uploadShouldCancel && cursor < [imageRecords count]; cursor++) {
 		[self uploadNextImage];
 	}
-	NSLog(@"after upload...");
 	if(uploadShouldCancel) {
 		[(NSObject *)[self delegate] performSelectorOnMainThread: @selector(uploaderDidCancelProcess)
 													  withObject: nil 
@@ -98,9 +92,7 @@ The idea here is that we kick off the first image upload, and set our cursor to 
 													  withObject: nil 
 												   waitUntilDone: YES];
 	}
-	NSLog(@"Before pool release");
 	[pool release];
-	NSLog(@"After pool release");
 }
 
 - (void)cancelUpload {
@@ -170,12 +162,11 @@ The idea here is that we kick off the first image upload, and set our cursor to 
 // - setCpgurl:
 // ===========================================================
 - (void)setCpgurl:(NSString *)aCpgurl {
-	NSLog(@"In CopperUploader::setCpgurl");
     if (cpgurl != aCpgurl) {
         [aCpgurl retain];
         [cpgurl release];
         cpgurl = aCpgurl;
-		NSLog([@"cpgurl = " stringByAppendingString:cpgurl]);
+//		NSLog([@"cpgurl = " stringByAppendingString:cpgurl]);
     }
 }
 
@@ -190,11 +181,10 @@ The idea here is that we kick off the first image upload, and set our cursor to 
 	NSString *resultstr = [self postForm:post_dict toURL:[self urlplus:@"xp_publish.php?cmd=login&lang=english"]];
 	
 	if ([resultstr rangeOfString:@"Couldn't log in"].location != NSNotFound) {
-		NSLog(@"Could not log in - aborting\n");
+		NSLog(@"Could not log in.\n");
 		return FALSE;
 	}
 	else {
-		NSLog(@"Logged in\n");
 		return TRUE;
 	}	
 }
@@ -221,11 +211,12 @@ The idea here is that we kick off the first image upload, and set our cursor to 
 	
 	// Get existing albums if there are any
 	if ([resultstr rangeOfString:@"BEGIN existing_albums"].location != NSNotFound) {
+		areThereAlbums = YES;
 		NSScanner *scan = [NSScanner scannerWithString:resultstr];
 		NSString *tmpstr;
 		[scan scanUpToString:@"<select id=\"album\"" intoString:NULL];
 		[scan scanUpToString:@"</select>" intoString:&tmpstr];
-		NSLog([@"Albums: " stringByAppendingString:tmpstr]);
+//		NSLog([@"Albums: " stringByAppendingString:tmpstr]);
 		// Now parse the select list
 		scan = [NSScanner scannerWithString:tmpstr];
 		[scan scanUpToString:@"<option" intoString:NULL];
@@ -237,29 +228,31 @@ The idea here is that we kick off the first image upload, and set our cursor to 
 			[scan scanUpToString:@"</option>" intoString:&albumname];
 			[scan scanString:@"</option>" intoString:NULL];
 			CopperAlbum *newalbum = [[CopperAlbum alloc] initWithName:[albumname copy] number:albumid];
-			NSLog(@"Found album: %s", [[newalbum stringValue] cString]);
+//			NSLog(@"Found album: %s", [[newalbum stringValue] cString]);
 			[albums addObject:newalbum];
 		}
 	}
 	else {
 		NSLog(@"Could not find albums in response");
+		areThereAlbums = NO;
 	}
 	// Can I create new albums?
 	if ([resultstr rangeOfString:@"BEGIN create_album"].location != NSNotFound) {
 		canCreateAlbums = YES;
-		NSLog(@"User can create albums");
+//		NSLog(@"User can create albums");
 	}
 	else {
 		canCreateAlbums = NO;
-		NSLog(@"User cannot create albums");
+//		NSLog(@"User cannot create albums");
 	}
 	// Get list of categories
 	if ([resultstr rangeOfString:@"BEGIN select_category"].location != NSNotFound) {
+		canChooseCategory = YES;
 		NSScanner *scan = [NSScanner scannerWithString:resultstr];
 		NSString *tmpstr;
 		[scan scanUpToString:@"<select name=\"cat\"" intoString:NULL];
 		[scan scanUpToString:@"</select>" intoString:&tmpstr];
-		NSLog([@"Categories: " stringByAppendingString:tmpstr]);
+//		NSLog([@"Categories: " stringByAppendingString:tmpstr]);
 		// Now parse the select list
 		scan = [NSScanner scannerWithString:tmpstr];
 		[scan scanUpToString:@"<option" intoString:NULL];
@@ -271,11 +264,12 @@ The idea here is that we kick off the first image upload, and set our cursor to 
 			[scan scanUpToString:@"</option>" intoString:&catname];
 			[scan scanString:@"</option>" intoString:NULL];
 			CopperAlbum *newcat = [[CopperAlbum alloc] initWithName:[catname copy] number:catid];
-			NSLog(@"Found category: %s", [[newcat stringValue] cString]);
+//			NSLog(@"Found category: %s", [[newcat stringValue] cString]);
 			[categories addObject:newcat];
 		}		
 	}
 	else {
+		canChooseCategory = NO;
 		NSLog(@"Could not find list of categories in response");
 	}
 }
@@ -353,7 +347,6 @@ The idea here is that we kick off the first image upload, and set our cursor to 
 		return nil;
 	}
 	else {
-		NSLog(@"Return page:\n%s", [resultstr cString]);
 		NSScanner *scan = [NSScanner scannerWithString:resultstr];
 		int albnumber;
 		[scan scanUpToString:@"name=\"album\" value =\"" intoString:NULL];
@@ -363,6 +356,23 @@ The idea here is that we kick off the first image upload, and set our cursor to 
 		NSLog(@"Created album: %s", [[newalb stringValue] cString]);
 		return newalb;
 	}
+}
+
+
+- (BOOL) canCreateAlbums {
+	return canCreateAlbums;
+}
+
+- (void) setCanCreateAlbums: (BOOL)newvalue {
+	canCreateAlbums = newvalue;
+}
+
+- (BOOL) areThereAlbums {
+	return areThereAlbums;
+}
+
+- (void) setAreThereAlbums: (BOOL)newvalue {
+	areThereAlbums = newvalue;
 }
 
 @end
@@ -422,58 +432,22 @@ The idea here is that we kick off the first image upload, and set our cursor to 
 	
 	if ([resultstr rangeOfString:@"Error"].location != NSNotFound) {
 		NSLog(@"Error uploading files - aborting\n");
-		NSLog(resultstr);
+//		NSLog(resultstr);
 		[self cancelUpload];
 		return;
 	}
 	else {
-		NSLog(@"Success!");
+//		NSLog(@"Success!");
 	}
 	
 	[(NSObject *)[self delegate] performSelectorOnMainThread: @selector(uploaderDidUploadImageAtIndex:)
 												  withObject: [NSNumber numberWithInt: cursor]
 											   waitUntilDone: YES];
 	
-	/*
-	NSRange idloc = [resultstr rangeOfString:@"unique_ID"];
-	NSString *newstr = [resultstr substringFromIndex:(idloc.location + 11)];
-	NSScanner *theScanner = [NSScanner scannerWithString:newstr];
-	NSString *uniqueID;
-	if ([theScanner scanString:@"value=\"" intoString:NULL] &&
-		[theScanner scanUpToString:@"\"" intoString:&uniqueID]) {
-		NSLog([@"UniqueID: " stringByAppendingString:uniqueID]);
-	}
-	else {
-		NSLog(@"Could not determine unique_ID - aborting\n");
-		[self cancelUpload];
-		return;
-	}
-	
-	// Phase 3 - set picture properties
-	[post_dict removeAllObjects];
-	
-	[post_dict setValue:@"2" forKey:@"album"];
-	[post_dict setValue:[image title] forKey:@"title"];
-	[post_dict setValue:[image descriptionText] forKey:@"caption"];
-	[post_dict setValue:@"" forKey:@"keywords"];
-	[post_dict setValue:@"phase_2" forKey:@"control"];
-	[post_dict setValue:uniqueID forKey:@"unique_ID"];
-	
-	resultstr = [self postForm:post_dict toURL:[self urlplus:@"upload.php?lang=english"]];
-	if ([resultstr rangeOfString:@"placed successfully"].location == NSNotFound) {
-		NSLog(@"Error when setting attributes:");
-		NSLog(resultstr);
-		[self cancelUpload];
-		return;
-	}
-	else {
-		NSLog(@"Success!");
-	}
-	
 	if ([[NSFileManager defaultManager] removeFileAtPath: tmpfile handler: nil] != YES) {
 		NSLog([@"Error removing " stringByAppendingString:tmpfile]);
 	}
-*/
+
 	[post_dict release];
 }
 
@@ -523,7 +497,7 @@ The idea here is that we kick off the first image upload, and set our cursor to 
 	NSData *regData = [self generateFormData:post_dict];
 	NSURL* url = [NSURL URLWithString:urlstr];
 	
-	NSLog(@"Posting to URL: %s", [urlstr cString]);
+//	NSLog(@"Posting to URL: %s", [urlstr cString]);
 	
 	NSMutableURLRequest* post = [NSMutableURLRequest requestWithURL:url];
 	

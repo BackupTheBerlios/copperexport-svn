@@ -64,7 +64,9 @@
 	
 	NSMutableArray *albums;
 	CopperAlbum *selectedAlbum;
+	BOOL areThereAlbums;
 	BOOL canCreateAlbums;
+	BOOL canChooseCategory;
 	NSMutableArray *categories;
 	CopperAlbum *selectedCategory;
 }
@@ -105,5 +107,10 @@
 	//- (void) setCategories: (NSArray *)newcategories;
 - (CopperAlbum *)selectedCategory;
 - (void) setSelectedCategory:(CopperAlbum *)newcat;
+
+- (BOOL) canCreateAlbums;
+- (void) setCanCreateAlbums: (BOOL)newvalue;
+- (BOOL) areThereAlbums;
+- (void) setAreThereAlbums: (BOOL)newvalue;
 
 @end
