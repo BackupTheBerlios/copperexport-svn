@@ -58,6 +58,8 @@
 	// Progress
 	IBOutlet NSProgressIndicator *progBar;
 	IBOutlet NSTextField *progText;
+	IBOutlet NSProgressIndicator *thumbnailProgress;
+	IBOutlet NSTextField *thumbnailText;
 	
 	ExportMgr *exportManager;
 	CopperUploader *uploader;
@@ -181,7 +183,7 @@
 - (void)setVersion: (NSString *)newversion;
 
 - (void)populateImageRecords;
-- (void)abortPopulateImageRecords;
+- (void)stopPopulateImageRecords;
 - (void)resumePopulateImageRecords;
 
 @end

@@ -34,6 +34,8 @@
                 resizeWidth = NSTextField; 
                 settingsBox = FUCopperBox; 
                 tagController = NSArrayController; 
+                thumbnailProgress = NSProgressIndicator; 
+                thumbnailText = NSTextField; 
                 usernameField = NSTextField; 
             }; 
             SUPERCLASS = NSObject; 

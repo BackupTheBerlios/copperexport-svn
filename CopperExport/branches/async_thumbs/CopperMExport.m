@@ -39,6 +39,14 @@
 #import "CopperResponse.h"
 #import "CpgKeyChain.h"
 
+@interface CopperMExport (PrivateAPI)
+
+- (void)populateImageRecordsLoop;
+- (void)showThumbnailProgress;
+- (void)hideThumbnailProgress;
+
+@end
+
 @implementation CopperMExport
 - (id)description {
 	return NSLocalizedString(@"Coppermine Export", @"Name of the Plugin");
@@ -122,9 +130,12 @@
 			return;
 		}
 		
-		if ([self showAlbumsSheet: self] == -1) {
+		[self hideThumbnailProgress];
+		int album = [self showAlbumsSheet: self];
+		[self showThumbnailProgress];
+		
+		if (album == -1)
 			return;
-		}
 		
 		// Here, we compute how many steps we're going to have in the progress bar.
 		// 2 per image + 2 per resized image + 2 if we need to create an album.
@@ -207,7 +218,7 @@
 }
 
 - (void)viewWillBeDeactivated {
-	[self abortPopulateImageRecords];
+	[self stopPopulateImageRecords];
 	[self savePreferences];
 }
 
@@ -226,49 +237,26 @@
 	
 	albums = [NSMutableArray arrayWithCapacity:5];
 	
-	populateImageRecordsShouldAbort = NO;
 	[self setImageRecords: [NSMutableArray array]];
 	[self populateImageRecords];
 }
 
 - (void)populateImageRecords {
 	nextThumbnail = 0;
-	[NSThread detachNewThreadSelector: @selector(resumePopulateImageRecords)
+	[self resumePopulateImageRecords];
+}
+
+- (void)resumePopulateImageRecords {
+	[NSThread detachNewThreadSelector: @selector(populateImageRecordsLoop)
 							 toTarget: self
 						   withObject: nil];
 }
 
-- (void)resumePopulateImageRecords {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	
-	// This probably means the value hasn't been initialized
-	if (nextThumbnail < 0)
-		nextThumbnail = 0;
-	// Only do something if we hadn't finished before
-	if (nextThumbnail < [exportManager imageCount]) {
-		// Reset the abort flag
-		populateImageRecordsShouldAbort = NO;
-		
-		// Simply continue from where we had left off.
-		for(;
-			!populateImageRecordsShouldAbort &&
-			// This is a hack to stop the process when "Cancel" is hit on the window, because in this
-			// case the viewWillBeDeactivated method is not called for some reason. We check that nextThumbnail>2
-			// because the conversion may start before the window becomes visible.
-			([[settingsBox window] isVisible] || nextThumbnail<3) &&
-			(nextThumbnail < [exportManager imageCount]); nextThumbnail++) {
-			NSLog(@"Generating thumbnail %d", nextThumbnail);
-			[[self mutableArrayValueForKey: @"imageRecords"] addObject: [CpgImageRecord recordFromExporter: exportManager atIndex: nextThumbnail]];
-		}
-
-		[recordController setSelectionIndexes: [NSIndexSet indexSet]];
-	}
-	
-	[pool release];
-}
-
-- (void)abortPopulateImageRecords {
+- (void)stopPopulateImageRecords {
 	populateImageRecordsShouldAbort = YES;
+	// Stop the twirly
+	[thumbnailProgress stopAnimation:self];
+	[thumbnailText setHidden:TRUE];
 }
 
 - (id)lastView {
@@ -295,7 +283,7 @@
 // Uploader Delegate Methods
 - (void)uploaderDidBeginProcess {
 	// Stop thumbnail generation
-	[self abortPopulateImageRecords];
+	[self stopPopulateImageRecords];
 	
 	[responses release];
 	responses = [[NSMutableArray array] retain];
@@ -329,7 +317,7 @@
 	}
 	
 	// Stop thumbnail generation
-	[self abortPopulateImageRecords];
+	[self stopPopulateImageRecords];
 	
 	if(shouldOpenCopper) {
 		// Now open the redirection URL.
@@ -356,9 +344,7 @@
 	}
 	
 	// We go back to the plugin window, so finish generating thumbnails if needed.
-	[NSThread detachNewThreadSelector: @selector(resumePopulateImageRecords)
-							 toTarget: self
-						   withObject: nil];
+	[self resumePopulateImageRecords];
 	
 	[NSApp endSheet: progressSheet];
 	[progressSheet orderOut: self];
@@ -839,6 +825,53 @@
 		version = newversion;
 	}
 	
+}
+
+@end
+
+@implementation CopperMExport (PrivateAPI)
+
+- (void)populateImageRecordsLoop {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+	// This probably means the value hasn't been initialized
+	if (nextThumbnail < 0)
+		nextThumbnail = 0;
+	// Only do something if we hadn't finished before
+	if (nextThumbnail < [exportManager imageCount]) {
+		// Reset the abort flag
+		populateImageRecordsShouldAbort = NO;
+		[self showThumbnailProgress];
+		
+		// Simply continue from where we had left off.
+		for(;
+			!populateImageRecordsShouldAbort &&
+			// This is a hack to stop the process when "Cancel" is hit on the window, because in this
+			// case the viewWillBeDeactivated method is not called for some reason. We check that nextThumbnail>2
+			// because the conversion may start before the window becomes visible.
+			([[settingsBox window] isVisible] || nextThumbnail<10) &&
+			(nextThumbnail < [exportManager imageCount]); nextThumbnail++) {
+			NSLog(@"Generating thumbnail %d", nextThumbnail);
+			[[self mutableArrayValueForKey: @"imageRecords"] addObject: [CpgImageRecord recordFromExporter: exportManager atIndex: nextThumbnail]];
+		}
+		[self hideThumbnailProgress];
+		
+		[recordController setSelectionIndexes: [NSIndexSet indexSet]];
+	}
+	
+	[pool release];
+}
+
+- (void)showThumbnailProgress {
+	// Start the twirly
+	[thumbnailText setHidden:FALSE];
+	[thumbnailProgress startAnimation:self];	
+}
+
+- (void)hideThumbnailProgress {
+	// Stop the twirly
+	[thumbnailProgress stopAnimation:self];
+	[thumbnailText setHidden:TRUE];	
 }
 
 @end
