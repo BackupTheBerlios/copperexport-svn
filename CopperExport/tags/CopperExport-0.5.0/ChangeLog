@@ -1,0 +1,96 @@
+2007-10-23  Diego M. Zamboni  <copperexport@zzamboni.org>
+
+	* Version 0.5.0
+
+	Main changes:
+
+	* Works with iPhoto7 (part of iLife'08)
+	
+	* Tested on both PPC and Intel platforms.
+
+	* Added server-side patches for Coppermine versions up to 1.4.13.
+
+	* Fixed an old-standing bug that would prevent uploads in some
+	cases, producing an HTTP 406 error (thanks to nonplus for the
+	patch).
+
+2006-01-16  Diego Zamboni  <copperexport@zzamboni.org>
+
+	* Version 0.4.0
+
+	Main changes:
+
+	* Built as a universal binary - should run in both Intel- and
+ 	  PPC-based Macs (I haven't tested it on Intel).
+	
+	* Allow saving a default resize size, which will be automatically
+  	  applied to all pictures from then on.
+
+	* Allow removing items from the list of photos to upload, directly
+	  from the export dialog. This removes the photo only from the
+	  upload list, not from the library (of course).
+
+	* Reverted back to using the original filename for uploading to
+	  Coppermine, rather than a generated unique ID, which was harder
+	  to interpret and to handle manually on the server.
+	
+	* Added patches for xp_publish.php for Coppermine 1.4.3.
+	
+	* CopperExport now has an installer, so no manual fiddling with
+	  the iPhoto plugins is necessary anymore.
+
+	* Distribution is now in the form of a disk image.
+
+2005-07-31  Diego Zamboni  <copperexport@zzamboni.org>
+
+	* Version 0.3.0
+
+	Changes:
+
+	* Images in non-JPEG image formats are automatically converted
+	  before uploading.
+	* Thumbnail generation made much faster.
+
+	(the changes above are courtesy of Fraser Speirs through FlickrExport 1.2.6.)
+
+	* Added patches for xp_publish.php for Coppermine 1.3.3 and
+	  1.4.1beta.
+	* Somewhat improved error reporting (in the GUI and in the console
+	  log)
+	
+2005-02-24  Diego Zamboni  <copperexport@zzamboni.org>
+
+	* Version 0.2.1.
+
+	Bug fixes:
+
+	* Fixed security vulnerability in my modifications to
+	  xp_publish.php, which did not properly quote the input. It is
+	  very important to install the fixed version of the file!
+	* Error messages are now also printed to the console log in
+	  addition to being shown in a dialog, to aid in reporting.
+
+2005-02-04  Diego Zamboni  <copperexport@zzamboni.org>
+
+	* Version 0.2.
+
+	Main changes:
+
+	* Allow setting the description for new albums (requires an
+	  additional server-side patch to the xp_publish.php file, see the
+	  ReadMe).
+	* Improved checking and cleanup of URLs (you can omit the http://
+	  at the beginning, and properly handles a slash or "/index.php"
+	  at the end).
+	* Improved error checking and reporting.
+	* Conversion to Latin1 encoding for proper interpretation by
+	  Coppermine.
+	* Populate keywords correctly (they were always set to empty).
+	* Made changes to support iPhoto 5 (code by Fraser Speirs).
+	* Fixed bugs in handling of repeated album and category names.
+	* Other miscellaneous bug fixes and improvements.
+
+2005-01-24  Diego Zamboni  <copperexport@zzamboni.org>
+
+	* Version 0.1: initial release of CopperExport.
+	
